@@ -17,7 +17,10 @@ class MessageSearch extends Message
     public function rules()
     {
         return [
-            [['id', 'creation_time', 'update_time', 'status', 'user_id'], 'integer'],
+            [
+                ['id', 'creation_time', 'update_time', 'status', 'user_id'],
+                'integer',
+            ],
             [['name', 'email', 'text', 'ip', 'session_id'], 'safe'],
         ];
     }
@@ -34,7 +37,7 @@ class MessageSearch extends Message
     /**
      * Creates data provider instance with search query applied
      *
-     * @param array $params
+     * @param array       $params
      * @param string|null $formName Form name to be used into `->load()` method.
      *
      * @return ActiveDataProvider
@@ -59,14 +62,15 @@ class MessageSearch extends Message
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'id'            => $this->id,
             'creation_time' => $this->creation_time,
-            'update_time' => $this->update_time,
-            'status' => $this->status,
-            'user_id' => $this->user_id,
+            'update_time'   => $this->update_time,
+            'status'        => $this->status,
+            'user_id'       => $this->user_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
+        $query
+            ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'text', $this->text])
             ->andFilterWhere(['like', 'ip', $this->ip])

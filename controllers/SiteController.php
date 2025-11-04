@@ -41,9 +41,10 @@ class SiteController extends Controller
         $model = new MessageForm();
         $session = Yii::$app->session;
 
-        if ($this->request->isPost &&
-            $model->accessSend() &&
-            $model->load(Yii::$app->request->post())
+        if ($this->request->isPost && $model->accessSend()
+            && $model->load(
+                Yii::$app->request->post(),
+            )
         ) {
             $session->set('timestamp', time());
 
@@ -51,10 +52,14 @@ class SiteController extends Controller
             $user->createUsers($model->email);
             
             $message = new Message();
-            $status = $message->createMessage($model->name,$user->id,$model->body);
+            $status = $message->createMessage(
+                $model->name,
+                $user->id,
+                $model->body,
+            );
 
-            if($status) {
-                $model->contact(Yii::$app->params['adminEmail'],$message);
+            if ($status) {
+                $model->contact(Yii::$app->params['adminEmail'], $message);
             }
 
             Yii::$app->session->setFlash('messageFormSubmitted');

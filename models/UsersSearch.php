@@ -34,7 +34,7 @@ class UsersSearch extends Users
     /**
      * Creates data provider instance with search query applied
      *
-     * @param array $params
+     * @param array       $params
      * @param string|null $formName Form name to be used into `->load()` method.
      *
      * @return ActiveDataProvider
@@ -59,12 +59,13 @@ class UsersSearch extends Users
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'postsCount' => $this->postsCount,
+            'id'            => $this->id,
+            'postsCount'    => $this->postsCount,
             'creation_time' => $this->creation_time,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
+        $query
+            ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'ip', $this->ip])
             ->andFilterWhere(['like', 'session_id', $this->session_id]);

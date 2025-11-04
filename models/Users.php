@@ -8,13 +8,13 @@ use app\models\Message;
 /**
  * This is the model class for table "users".
  *
- * @property int $id
+ * @property int         $id
  * @property string|null $name
  * @property string|null $email
  * @property string|null $ip
- * @property int $postsCount
+ * @property int         $postsCount
  * @property string|null $session_id
- * @property int $creation_time
+ * @property int         $creation_time
  */
 class Users extends \yii\db\ActiveRecord
 {
@@ -27,11 +27,13 @@ class Users extends \yii\db\ActiveRecord
     }
 
     /**
-    * relationship with messages
+     * relationship with messages
      */
     public function getMessages()
     {
-        return $this->hasMany(Message::class, ['user_id' => 'id'])->inverseOf('users');;
+        return $this->hasMany(Message::class, ['user_id' => 'id'])->inverseOf(
+            'users',
+        );;
     }
 
     /**
@@ -41,8 +43,16 @@ class Users extends \yii\db\ActiveRecord
     {
         return [
             [['email'], 'default', 'value' => null],
-            [['ip'], 'default', 'value' => (Yii::$app->getRequest()->getUserIP() ?? null)],
-            [['session_id'], 'default', 'value' => (Yii::$app->session->getId() ?? null)],
+            [
+                ['ip'],
+                'default',
+                'value' => (Yii::$app->getRequest()->getUserIP() ?? null),
+            ],
+            [
+                ['session_id'],
+                'default',
+                'value' => (Yii::$app->session->getId() ?? null),
+            ],
             [['postsCount'], 'default', 'value' => 0],
             [['postsCount', 'creation_time'], 'integer'],
             [['session_id'], 'string'],
@@ -64,28 +74,33 @@ class Users extends \yii\db\ActiveRecord
             ],
         ];
     }
+
     /**
      * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'email' => Yii::t('app', 'Email'),
-            'ip' => Yii::t('app', 'Ip'),
-            'postsCount' => Yii::t('app', 'Posts Count'),
-            'session_id' => Yii::t('app', 'Session ID'),
+            'id'            => Yii::t('app', 'ID'),
+            'email'         => Yii::t('app', 'Email'),
+            'ip'            => Yii::t('app', 'Ip'),
+            'postsCount'    => Yii::t('app', 'Posts Count'),
+            'session_id'    => Yii::t('app', 'Session ID'),
             'creation_time' => Yii::t('app', 'Creation Time'),
         ];
     }
 
     /**
      * return user by ip address
+     *
      * @return Users
      */
-    public static function findOneByIp() : Users
+    public static function findOneByIp(): Users
     {
-        if (($model = Users::findOne(['ip' => Yii::$app->getRequest()->getUserIP()])) !== null) {
+        if (($model = Users::findOne(
+                ['ip' => Yii::$app->getRequest()->getUserIP()],
+            )) !== null
+        ) {
             return $model;
         }
         return new Users();
@@ -93,6 +108,7 @@ class Users extends \yii\db\ActiveRecord
 
     /**
      * create new Users or update counters messages to user
+     *
      * @param string $email
      *
      * @return void

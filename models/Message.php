@@ -166,6 +166,7 @@ class Message extends \yii\db\ActiveRecord
 
     /**
      * Set status message STATUS_IN_ACTIVE
+     *
      * @return void
      */
     public function setStatusInActive(): void
@@ -175,6 +176,7 @@ class Message extends \yii\db\ActiveRecord
 
     /**
      * Проверяет, можно ли удалить пост (в пределах 14 дней после публикации)
+     *
      * @return bool
      */
     public function canBeDeleted(): bool
@@ -187,6 +189,7 @@ class Message extends \yii\db\ActiveRecord
 
     /**
      * Возвращает оставшееся время (в секундах) до конца окна удаления
+     *
      * @return int
      */
     public function deleteSecondsLeft(): int

@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col">
                 <?php
                 $dataProvider = new ActiveDataProvider([
-                    'query'      => Message::find()->with('user')->where('status=1'),
+                    'query'      => Message::find()->with('user')->where('status='.Message::STATUS_ACTIVE),
                     'pagination' => [
                         'pageSize' => 3,
                     ],
@@ -58,9 +58,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'itemView'     => function ($model, $key, $index, $widget) {
                         return $this->render('_list_item', ['model' => $model]);
                     },
-                    'itemOptions'  => [
-                        //'tag' => false,
-                    ],
                     'pager'        => [
                         'maxButtonCount' => 3,
                     ],

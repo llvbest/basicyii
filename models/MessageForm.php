@@ -48,8 +48,8 @@ class MessageForm extends Model
     public function attributeLabels()
     {
         return [
-            'name' => \Yii::t('app', 'name'),
-            'body' => \Yii::t('app', 'body'),
+            'name'       => \Yii::t('app', 'name'),
+            'body'       => \Yii::t('app', 'body'),
             'verifyCode' => \Yii::t('app', 'verifyCode'),
         ];
     }
@@ -57,7 +57,7 @@ class MessageForm extends Model
     /**
      * Sends an email to the specified email address using the information collected by this model.
      *
-     * @param string $email the target email address
+     * @param string  $email the target email address
      * @param Message $model
      *
      * @return bool whether the model passes validation
@@ -103,7 +103,9 @@ class MessageForm extends Model
             //раньше чем через 3 минуты
             $this->addError(
                 'accessError',
-                \Yii::t('app', 'The next message may be published in').' '.($timestamp + self::ACCESS_SEND_SECONDS - time()).' seconds',
+                \Yii::t('app', 'The next message may be published in') . ' '
+                . ($timestamp + self::ACCESS_SEND_SECONDS - time())
+                . ' seconds',
             );
             return false;
         }

@@ -75,7 +75,7 @@ class Message extends \yii\db\ActiveRecord
             [['text'], 'string', 'min' => 5, 'max' => 1000],
             // normalize value 'text'
             [
-                ['text'],
+                ['text', 'name'],
                 'filter',
                 'filter' => function ($value) {
                     //normalize field text and name

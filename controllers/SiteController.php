@@ -49,8 +49,7 @@ class SiteController extends Controller
 
             $user = Users::findOneByIp();
             $user->createUsers($model->email);
-
-            //вынести в метод
+            
             $message = new Message();
             $status = $message->createMessage($model->name,$user->id,$model->body);
 

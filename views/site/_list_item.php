@@ -16,10 +16,7 @@
                         '{postsCount, plural, =0{нет постов} =1{# пост} few{# поста} many{# постов} other{# постов}}',
                         ['postsCount' => $model->user->postsCount]
                     );
-                ?><!--
-                <a href="<?php echo yii\helpers\Url::toRoute(['message/view', 'id' => $model->id]);?>" >view</a>
-                <a href="<?php echo yii\helpers\Url::toRoute(['message/update', 'id' => $model->id]);?>" >update</a>
-                <a href="<?php echo yii\helpers\Url::toRoute(['message/delete', 'id' => $model->id]);?>" >delete</a>-->
+                ?>
             </small>
         </p>
     </div>

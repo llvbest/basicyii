@@ -1,8 +1,18 @@
+ОПИСАНИЕ
+------------
+
+проект развернут на yii2 basic шаблоне
+базовый котролле siteController action index
+валидация формы отправки сообщения MessageForm
+дамп базы с тестовыми данными, лежит в папке 'дамп бд'
+скриншоты работающего приложения с локалки в папке 'скриншоты' (валидация формы, удаление сообщения, обновление текста и прочее)
+затраченное время около 8часов
+
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
+    <h1 align="center">Yii 2 Basic Test Task</h1>
     <br>
 </p>
 
@@ -117,7 +127,7 @@ return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=yii2basic',
     'username' => 'root',
-    'password' => '1234',
+    'password' => '',
     'charset' => 'utf8',
 ];
 ```
